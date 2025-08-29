@@ -23,7 +23,7 @@
 my-news-app/  
 │  
 ├── backend/  
-│   ├── app.py  
+│       ├── app.py  
 │   ├── db.py  
 │   ├── scheduler.py  
 │   └── requirements.txt  
