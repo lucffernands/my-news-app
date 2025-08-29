@@ -20,24 +20,24 @@
 
 ## 📂 Estrutura do projeto
 
-my-news-app/
+my-news-app/  
+│  
+├── backend/  
+│   ├── app.py  
+│   ├── db.py  
+│   ├── scheduler.py  
+│   └── requirements.txt  
 │
-├── backend/
-│   ├── app.py
-│   ├── db.py
-│   ├── scheduler.py
-│   └── requirements.txt
+├── frontend/  
+│   ├── package.json  
+│   ├── public/  
+│   │   └── index.html  
+│   └── src/  
+│       ├── App.js  
+│       ├── api.js  
+│       └── index.js  
 │
-├── frontend/
-│   ├── package.json
-│   ├── public/
-│   │   └── index.html
-│   └── src/
-│       ├── App.js
-│       ├── api.js
-│       └── index.js
-│
-└── README.md
+└── README.md  
 
 ---
 
