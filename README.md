@@ -20,7 +20,24 @@
 
 ## 📂 Estrutura do projeto
 
-my-news-app/ │ ├── backend/ │   ├── app.py           # API Flask │   ├── db.py            # Banco SQLite │   ├── scheduler.py     # Scheduler de notícias │   └── requirements.txt │ ├── frontend/ │   ├── package.json │   └── src/ │       ├── App.js       # Tela principal │       ├── api.js       # Comunicação com backend │       └── index.js │ └── README.md
+my-news-app/
+│
+├── backend/                 # Backend Flask + scheduler
+│   ├── app.py               # API para salvar/listar preferências
+│   ├── db.py                # Banco SQLite
+│   ├── scheduler.py         # Scheduler que busca notícias da NewsAPI
+│   └── requirements.txt     # Dependências Python
+│
+├── frontend/                # Frontend React
+│   ├── package.json
+│   ├── public/
+│   │   └── index.html
+│   └── src/
+│       ├── App.js           # Tela principal: email, tópico e horário
+│       ├── api.js           # Comunicação com backend
+│       └── index.js
+│
+└── README.md                # Informações do projeto
 
 ---
 
