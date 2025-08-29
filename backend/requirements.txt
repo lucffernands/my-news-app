@@ -1,1 +1,2 @@
-requerimentos
+Flask
+requests
