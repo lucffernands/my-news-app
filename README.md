@@ -20,10 +20,11 @@
 
 ## 📂 Estrutura do projeto
 
+```
 my-news-app/  
 │  
 ├── backend/  
-│       ├── app.py  
+│   ├── app.py  
 │   ├── db.py  
 │   ├── scheduler.py  
 │   └── requirements.txt  
@@ -38,7 +39,7 @@ my-news-app/
 │       └── index.js  
 │
 └── README.md  
-
+```
 ---
 
 ## ⚡ Tecnologias usadas
