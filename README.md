@@ -22,22 +22,22 @@
 
 my-news-app/
 │
-├── backend/                 # Backend Flask + scheduler
-│   ├── app.py               # API para salvar/listar preferências
-│   ├── db.py                # Banco SQLite
-│   ├── scheduler.py         # Scheduler que busca notícias da NewsAPI
-│   └── requirements.txt     # Dependências Python
+├── backend/
+│   ├── app.py
+│   ├── db.py
+│   ├── scheduler.py
+│   └── requirements.txt
 │
-├── frontend/                # Frontend React
+├── frontend/
 │   ├── package.json
 │   ├── public/
 │   │   └── index.html
 │   └── src/
-│       ├── App.js           # Tela principal: email, tópico e horário
-│       ├── api.js           # Comunicação com backend
+│       ├── App.js
+│       ├── api.js
 │       └── index.js
 │
-└── README.md                # Informações do projeto
+└── README.md
 
 ---
 
