@@ -1,81 +1,96 @@
-# My News App
+# 📰 My News App
 
-📰 **My News App** é um aplicativo web que envia notícias resumidas para os usuários no horário que escolherem.  
+**My News App** é um projeto que permite que usuários escolham tópicos ou tags de interesse e recebam notícias resumidas diariamente.  
 
-- Backend em **Python (Flask)**  
-- Frontend em **React**  
-- Banco de dados **SQLite** para testes (fácil de migrar para Postgres depois)  
-- Busca notícias via **NewsAPI**  
-
----
-
-## 🔹 Funcionalidades
-
-- Escolha do **tópico** de interesse (tecnologia, esportes, política, etc.)  
-- Definição do **horário** de envio de notícias  
-- Agendamento automático para enviar notícias resumidas  
-- Multiusuário (testes iniciais com 2 usuários)  
+- **Backend:** Python / Flask  
+- **Frontend:** React  
+- **Notificações:** Futuramente via e-mail ou push  
 
 ---
 
-## 📂 Estrutura do projeto
-
+## 📁 Estrutura do Projeto
 ```
-my-news-app/  
-│  
-├── backend/  
-│   ├── app.py  
-│   ├── db.py  
-│   ├── scheduler.py  
-│   └── requirements.txt  
-│
-├── frontend/  
-│   ├── package.json  
-│   ├── public/  
-│   │   └── index.html  
-│   └── src/  
-│       ├── App.js  
-│       ├── api.js  
-│       └── index.js  
-│
-└── README.md  
+my-news-app/ │ ├── backend/                  # Backend Flask │   ├── app.py                # Servidor principal │   └── requirements.txt      # Dependências do Python │ ├── frontend/                 # Frontend React │   ├── package.json          # Dependências do React │   ├── public/ │   │   ├── index.html        # HTML principal │   │   └── styles.css        # CSS separado │   └── src/ │       ├── App.js            # Componente principal │       ├── api.js            # Funções de comunicação com o backend │       └── index.js          # Renderiza App.js │ └── README.md                 # Documentação do projeto
 ```
 ---
 
-## ⚡ Tecnologias usadas
+## ⚡ Funcionalidades
 
-- **Python 3** + Flask  
-- **React.js**  
-- **SQLite** (teste local)  
-- **NewsAPI** (API de notícias)  
+- 🏷️ Escolher tópicos ou tags de notícias  
+- ⏰ Definir horário de envio de notícias  
+- 📰 Consultar notícias recentes via NewsAPI  
+- 💻 Frontend React simples e responsivo  
 
 ---
 
-## 🚀 Como rodar localmente (PC ou Termux)
+## 🖥️ Backend
 
-### 1️⃣ Backend
-```bash
-cd backend
+### Dependências
+
+```txt
+Flask
+requests
+flask-cors
+schedule
+python-dotenv
+```
+Executando localmente
+
+# Instalar dependências
 pip install -r requirements.txt
-export NEWSAPI_KEY="SUA_CHAVE_AQUI"
-python app.py           # Roda a API
-python scheduler.py     # Roda o scheduler de notícias
-```
+
+# Definir variável de ambiente da API
+export NEWSAPI_KEY="SUA_CHAVE_DA_NEWSAPI"
+
+# Rodar o backend
+python app.py
+
+O backend ficará disponível em http://localhost:5000 ou no IP da sua rede local.
+
 
 ---
 
+🌐 Frontend
 
-2️⃣ Frontend
+Dependências
 
-cd frontend
 npm install
-npm start               # Roda o app em http://localhost:3000
+
+Executando localmente
+
+npm start
+
+O frontend será aberto em http://localhost:3000 e se comunica com o backend via api.js.
 
 
 ---
 
+🚀 Deploy
 
+Render: Configure um Python Web Service apontando o diretório backend/.
+
+Variáveis de ambiente: NEWSAPI_KEY.
+
+Use a URL do backend no api.js do frontend.
+
+
+
+---
+
+💡 Observações
+
+CSS separado em public/styles.css.
+
+API configurada com CORS, permitindo comunicação segura com o frontend.
+
+Para múltiplos usuários, gerenciar preferências no backend via arquivo JSON ou banco de dados.
+
+
+
+---
 
 📄 Licença
 
-Este projeto está sob a licença MIT.
+Este projeto é open source.
+
+---
