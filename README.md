@@ -111,3 +111,11 @@ Para múltiplos usuários, gerenciar preferências no backend via arquivo JSON o
 Este projeto é open source.
 
 ---
+
+# 🌐 Links oficiais
+
+- **Render** (hospedagem de apps e APIs): [https://render.com](https://render.com)  
+- **NewsAPI** (API de notícias): [https://newsapi.org](https://newsapi.org)
+
+
+---
