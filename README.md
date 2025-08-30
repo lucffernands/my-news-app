@@ -42,7 +42,7 @@ my-news-app/
 
 ## 🖥️ Backend
 
-### Dependências
+# Dependências
 
 ```txt
 Flask
@@ -51,8 +51,8 @@ flask-cors
 schedule
 python-dotenv
 ```
-Executando localmente
-
+# Executando localmente
+```
 # Instalar dependências
 pip install -r requirements.txt
 
@@ -63,11 +63,11 @@ export NEWSAPI_KEY="SUA_CHAVE_DA_NEWSAPI"
 python app.py
 
 O backend ficará disponível em http://localhost:5000 ou no IP da sua rede local.
-
+```
 
 ---
 
-🌐 Frontend
+# 🌐 Frontend
 
 Dependências
 
