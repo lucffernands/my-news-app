@@ -8,7 +8,7 @@
 
 ---
 
-## 📁 Estrutura do Projeto
+# 📁 Estrutura do Projeto
 ```
 # Projeto My News App
 
@@ -31,7 +31,7 @@ my-news-app/
 ```
 ---
 
-## ⚡ Funcionalidades
+# ⚡ Funcionalidades
 
 - 🏷️ Escolher tópicos ou tags de notícias  
 - ⏰ Definir horário de envio de notícias  
@@ -40,9 +40,9 @@ my-news-app/
 
 ---
 
-## 🖥️ Backend
+# 🖥️ Backend
 
-# Dependências
+## Dependências
 
 ```txt
 Flask
@@ -51,7 +51,7 @@ flask-cors
 schedule
 python-dotenv
 ```
-# Executando localmente
+## Executando localmente
 ```
 # Instalar dependências
 pip install -r requirements.txt
@@ -69,20 +69,20 @@ O backend ficará disponível em http://localhost:5000 ou no IP da sua rede loca
 
 # 🌐 Frontend
 
-Dependências
-
+## Dependências
+```
 npm install
-
-Executando localmente
-
+```
+## Executando localmente
+```
 npm start
-
+```
 O frontend será aberto em http://localhost:3000 e se comunica com o backend via api.js.
 
 
 ---
 
-🚀 Deploy
+# 🚀 Deploy
 
 Render: Configure um Python Web Service apontando o diretório backend/.
 
@@ -94,7 +94,7 @@ Use a URL do backend no api.js do frontend.
 
 ---
 
-💡 Observações
+# 💡 Observações
 
 CSS separado em public/styles.css.
 
@@ -106,7 +106,7 @@ Para múltiplos usuários, gerenciar preferências no backend via arquivo JSON o
 
 ---
 
-📄 Licença
+# 📄 Licença
 
 Este projeto é open source.
 
