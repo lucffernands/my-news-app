@@ -5,17 +5,22 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
 
-# Carrega variáveis do .env
+# Carrega variáveis do .env (opcional, mas útil localmente)
 load_dotenv()
 
 app = Flask(__name__)
+
+# Ajuste do CORS
+# Opção segura: permitir apenas seu frontend no GitHub Pages
+# CORS(app, origins=["https://seu-usuario.github.io"])
+
+# Opção aberta (mais simples para testes): permite qualquer origem
 CORS(app)
 
-NEWSAPI_KEY = os.getenv("NEWSAPI_KEY")
 PREFERENCES_FILE = "preferences.json"
+NEWSAPI_KEY = os.getenv("NEWSAPI_KEY")
 
-
-# Rota para salvar preferências de um usuário
+# Rota para salvar preferências
 @app.route("/set-preference", methods=["POST"])
 def set_preference():
     data = request.json
@@ -38,7 +43,6 @@ def set_preference():
 
     return jsonify({"message": "Preferência salva com sucesso!"})
 
-
 # Rota para listar preferências
 @app.route("/get-preferences", methods=["GET"])
 def get_preferences():
@@ -48,13 +52,12 @@ def get_preferences():
         return jsonify(prefs)
     return jsonify({})
 
-
 # Rota para buscar notícias
 @app.route("/news", methods=["GET"])
 def get_news():
     topic = request.args.get("topic")
     if not topic:
-        return jsonify({"error": "Informe um tópico: ?topic=tecnologia"}), 400
+        return jsonify({"error": "Informe um tópico ou tag: ?topic=tecnologia"}), 400
 
     url = f"https://newsapi.org/v2/everything?q={topic}&language=pt&apiKey={NEWSAPI_KEY}"
     response = requests.get(url)
@@ -63,10 +66,12 @@ def get_news():
         return jsonify({"error": "Erro ao consultar NewsAPI"}), 500
 
     articles = response.json().get("articles", [])
-    summaries = [{"title": a["title"], "url": a["url"]} for a in articles[:5]]
+    summaries = [
+        {"title": a["title"], "url": a["url"]}
+        for a in articles[:5]  # pega só as 5 primeiras notícias
+    ]
 
     return jsonify(summaries)
 
-
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.getenv("PORT", 5000)))
+    app.run(host="0.0.0.0", port=5000)
