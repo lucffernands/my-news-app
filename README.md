@@ -10,7 +10,24 @@
 
 ## 📁 Estrutura do Projeto
 ```
-my-news-app/ │ ├── backend/                  # Backend Flask │   ├── app.py                # Servidor principal │   └── requirements.txt      # Dependências do Python │ ├── frontend/                 # Frontend React │   ├── package.json          # Dependências do React │   ├── public/ │   │   ├── index.html        # HTML principal │   │   └── styles.css        # CSS separado │   └── src/ │       ├── App.js            # Componente principal │       ├── api.js            # Funções de comunicação com o backend │       └── index.js          # Renderiza App.js │ └── README.md                 # Documentação do projeto
+# Projeto My News App
+
+my-news-app/
+├── backend/                  # Backend Flask
+│   ├── app.py                # Servidor principal
+│   └── requirements.txt      # Dependências do Python
+│
+├── frontend/                 # Frontend React
+│   ├── package.json          # Dependências do React
+│   ├── public/
+│   │   ├── index.html        # HTML principal
+│   │   └── styles.css        # CSS separado
+│   └── src/
+│       ├── App.js            # Componente principal React
+│       ├── api.js            # Funções para comunicação com o backend
+│       └── index.js          # Ponto de entrada do React
+│
+└── README.md                 # Documentação do projeto
 ```
 ---
 
