@@ -1,17 +1,20 @@
-// frontend/src/api.js
+// api.js
 
-// URL do backend hospedado no Render
+// URL pública do backend no Render
 const BASE_URL = "https://my-news-app-98l9.onrender.com";
 
 /**
  * Salva as preferências do usuário no backend
+ * @param {string} topic - Tópico ou tag escolhida
+ * @param {string} time - Horário desejado (HH:MM)
+ * @returns {Promise<Object>} - Resposta da API
  */
-export async function setPreference(email, topico, horario) {
+export async function setPreference(topic, time) {
   try {
     const res = await fetch(`${BASE_URL}/set-preference`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, topic: topico, time: horario })
+      body: JSON.stringify({ topic, time })
     });
 
     if (!res.ok) {
@@ -27,14 +30,15 @@ export async function setPreference(email, topico, horario) {
 
 /**
  * Retorna todos os usuários cadastrados
+ * @returns {Promise<Array>} - Lista de usuários
  */
 export async function getUsers() {
   try {
-    const res = await fetch(`${BASE_URL}/get_preferences`);
+    const res = await fetch(`${BASE_URL}/get-preferences`);
     if (!res.ok) throw new Error(`Erro HTTP: ${res.status}`);
     return await res.json();
   } catch (err) {
-    console.error("Erro ao buscar usuários:", err);
+    console.error("Erro ao buscar preferências:", err);
     return [];
   }
 }
