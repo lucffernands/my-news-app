@@ -1,56 +1,44 @@
 import { useState } from "react";
-import { setPreference, getNews } from "./api";
+import { setPreference } from "./api";
 
 function App() {
-  const [topic, setTopic] = useState("tecnologia");
-  const [time, setTime] = useState("12:00");
-  const [message, setMessage] = useState("");
+  const [topico, setTopico] = useState("tecnologia");
+  const [horario, setHorario] = useState("12:00");
+  const [msg, setMsg] = useState("");
 
-  const handleSave = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Para testes, não usamos email
-    const email = "usuario-teste"; 
-
-    const res = await setPreference(email, topic, time);
-    setMessage(res.message || res.msg || "Preferência salva!");
-  };
-
-  const handleFetchNews = async () => {
-    const news = await getNews(topic);
-    console.log("Notícias:", news);
-    alert(news.map(n => n.title).join("\n"));
+    // Como não vamos usar email/login, apenas usamos "anon" como identificador
+    const res = await setPreference("anon", topico, horario);
+    setMsg(res.msg || "Preferências salvas!");
   };
 
   return (
     <div className="container">
       <h1>My News App</h1>
-      <form onSubmit={handleSave}>
+      <form onSubmit={handleSubmit} className="form">
         <label>
-          Tópico ou Tag:
-          <input
-            type="text"
-            value={topic}
-            onChange={(e) => setTopic(e.target.value)}
-            required
-          />
+          Escolha o tópico:
+          <select value={topico} onChange={(e) => setTopico(e.target.value)}>
+            <option value="tecnologia">Tecnologia</option>
+            <option value="esportes">Esportes</option>
+            <option value="politica">Política</option>
+            <option value="saude">Saúde</option>
+            <option value="entretenimento">Entretenimento</option>
+          </select>
         </label>
         <label>
-          Horário (HH:MM):
+          Escolha o horário:
           <input
             type="time"
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
+            value={horario}
+            onChange={(e) => setHorario(e.target.value)}
             required
           />
         </label>
-        <button type="submit">Salvar Preferência</button>
+        <button type="submit">Salvar Preferências</button>
       </form>
-
-      {message && <p>{message}</p>}
-
-      <hr />
-      <button onClick={handleFetchNews}>Testar Busca de Notícias</button>
+      {msg && <p className="msg">{msg}</p>}
     </div>
   );
 }
