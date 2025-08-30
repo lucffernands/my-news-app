@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { setPreference } from "./api";
+import { setPreference, getNews } from "./api";
 
 function App() {
   const [email, setEmail] = useState("");
-  const [topico, setTopico] = useState("tecnologia");
-  const [horario, setHorario] = useState("12:00");
+  const [topic, setTopic] = useState("tecnologia");
+  const [time, setTime] = useState("12:00");
+  const [news, setNews] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,44 +14,53 @@ function App() {
       return;
     }
 
-    const res = await setPreference(email, topico, horario);
-    alert(res.msg || "Preferências salvas!");
+    const res = await setPreference(email, topic, time);
+    alert(res.message || "Preferências salvas!");
+  };
+
+  const fetchNews = async () => {
+    const articles = await getNews(topic);
+    setNews(articles);
   };
 
   return (
-    <div style={{ maxWidth: "400px", margin: "50px auto", fontFamily: "sans-serif" }}>
-      <h1 style={{ textAlign: "center" }}>My News App</h1>
-      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+    <div className="container">
+      <h1>My News App</h1>
+      <form onSubmit={handleSubmit}>
         <input
           type="email"
           placeholder="Seu email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          style={{ padding: "8px", fontSize: "14px" }}
         />
-        <select
-          value={topico}
-          onChange={(e) => setTopico(e.target.value)}
-          style={{ padding: "8px", fontSize: "14px" }}
-        >
-          <option value="tecnologia">Tecnologia</option>
-          <option value="esportes">Esportes</option>
-          <option value="politica">Política</option>
-          <option value="saude">Saúde</option>
-          <option value="entretenimento">Entretenimento</option>
-        </select>
+        <input
+          type="text"
+          placeholder="Tópico ou tag"
+          value={topic}
+          onChange={(e) => setTopic(e.target.value)}
+          required
+        />
         <input
           type="time"
-          value={horario}
-          onChange={(e) => setHorario(e.target.value)}
+          value={time}
+          onChange={(e) => setTime(e.target.value)}
           required
-          style={{ padding: "8px", fontSize: "14px" }}
         />
-        <button type="submit" style={{ padding: "10px", backgroundColor: "#007bff", color: "#fff", border: "none", cursor: "pointer" }}>
-          Salvar
-        </button>
+        <button type="submit">Salvar Preferências</button>
       </form>
+
+      <button onClick={fetchNews}>Buscar Notícias</button>
+
+      <ul>
+        {news.map((article, idx) => (
+          <li key={idx}>
+            <a href={article.url} target="_blank" rel="noopener noreferrer">
+              {article.title}
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
