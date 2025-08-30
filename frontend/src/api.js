@@ -1,5 +1,5 @@
-// URL base do backend (substitua pelo endereço do Render)
-const BASE_URL = "https://seu-backend.onrender.com";
+// Substitua pela URL do seu backend no Render
+const BASE_URL = "https://seu-backend-no-render.onrender.com";
 
 /**
  * Salva as preferências do usuário no backend
@@ -16,7 +16,10 @@ export async function setPreference(email, topic, time) {
       body: JSON.stringify({ email, topic, time })
     });
 
-    if (!res.ok) throw new Error(`Erro HTTP: ${res.status}`);
+    if (!res.ok) {
+      throw new Error(`Erro HTTP: ${res.status}`);
+    }
+
     return await res.json();
   } catch (err) {
     console.error("Erro ao salvar preferências:", err);
@@ -25,24 +28,24 @@ export async function setPreference(email, topic, time) {
 }
 
 /**
- * Retorna todas as preferências cadastradas
- * @returns {Promise<Array>} - Lista de usuários e tópicos
+ * Busca todos os usuários cadastrados
+ * @returns {Promise<Array>} - Lista de usuários
  */
-export async function getPreferences() {
+export async function getUsers() {
   try {
     const res = await fetch(`${BASE_URL}/get-preferences`);
     if (!res.ok) throw new Error(`Erro HTTP: ${res.status}`);
     return await res.json();
   } catch (err) {
-    console.error("Erro ao buscar preferências:", err);
-    return {};
+    console.error("Erro ao buscar usuários:", err);
+    return [];
   }
 }
 
 /**
- * Busca notícias de um tópico ou tag
- * @param {string} topic - Tópico ou tag
- * @returns {Promise<Array>} - Lista de notícias
+ * Busca notícias por tópico ou tag
+ * @param {string} topic - Tópico ou tag a buscar
+ * @returns {Promise<Array>} - Lista resumida de notícias
  */
 export async function getNews(topic) {
   try {
@@ -53,4 +56,4 @@ export async function getNews(topic) {
     console.error("Erro ao buscar notícias:", err);
     return [];
   }
-      }
+}
