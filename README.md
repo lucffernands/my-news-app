@@ -84,7 +84,7 @@ O frontend será aberto em http://localhost:3000 e se comunica com o backend via
 
 # 🚀 Deploy
 
-**Render:*" Configure um Python Web Service apontando o diretório backend/.
+**Render:** Configure um Python Web Service apontando o diretório backend/.
 
 Variáveis de ambiente: **NEWSAPI_KEY.**
 
