@@ -1,26 +1,23 @@
-import os
 import json
+import os
 import requests
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
-from dotenv import load_dotenv
 
-# Carrega variáveis do .env (opcional, mas útil localmente)
-load_dotenv()
-
-app = Flask(__name__)
-
-# Ajuste do CORS
-# Opção segura: permitir apenas seu frontend no GitHub Pages
-# CORS(app, origins=["https://seu-usuario.github.io"])
-
-# Opção aberta (mais simples para testes): permite qualquer origem
+# Configura o Flask e CORS
+app = Flask(__name__, static_folder="static")
 CORS(app)
 
+# Caminho para salvar preferências
 PREFERENCES_FILE = "preferences.json"
+
+# NewsAPI Key
 NEWSAPI_KEY = os.getenv("NEWSAPI_KEY")
 
-# Rota para salvar preferências
+# -------------------------
+# Rotas da API
+# -------------------------
+
 @app.route("/set-preference", methods=["POST"])
 def set_preference():
     data = request.json
@@ -43,8 +40,8 @@ def set_preference():
 
     return jsonify({"message": "Preferência salva com sucesso!"})
 
-# Rota para listar preferências
-@app.route("/get-preferences", methods=["GET"])
+
+@app.route("/get_preferences", methods=["GET"])
 def get_preferences():
     if os.path.exists(PREFERENCES_FILE):
         with open(PREFERENCES_FILE, "r") as f:
@@ -52,12 +49,12 @@ def get_preferences():
         return jsonify(prefs)
     return jsonify({})
 
-# Rota para buscar notícias
+
 @app.route("/news", methods=["GET"])
 def get_news():
     topic = request.args.get("topic")
     if not topic:
-        return jsonify({"error": "Informe um tópico ou tag: ?topic=tecnologia"}), 400
+        return jsonify({"error": "Informe um tópico: ?topic=tecnologia"}), 400
 
     url = f"https://newsapi.org/v2/everything?q={topic}&language=pt&apiKey={NEWSAPI_KEY}"
     response = requests.get(url)
@@ -73,5 +70,24 @@ def get_news():
 
     return jsonify(summaries)
 
+
+# -------------------------
+# Servindo frontend (React build)
+# -------------------------
+
+@app.route("/", defaults={"path": ""})
+@app.route("/<path:path>")
+def serve(path):
+    if path != "" and os.path.exists(os.path.join(app.static_folder, path)):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, "index.html")
+
+
+# -------------------------
+# Inicialização
+# -------------------------
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
